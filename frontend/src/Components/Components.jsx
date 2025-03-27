@@ -4,6 +4,7 @@ import Header from "./Header/Header"
 import Scrapbook from "./Scrapbook/Scrapbook"
 import AuthRegister from "./Auth/AuthRegister";
 import AuthLogin from "./Auth/AuthLogin";
+import AuthModule from "./Auth/Auth";
 import ProtectedRoute from "../Common/ProtectedRoute";
 
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
@@ -16,6 +17,7 @@ export default function Components() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<AuthLogin/>} />
         <Route path="/register" element={<AuthRegister/>} />
+        <Route path="/auth" element={<AuthModule />} />
 
         <Route path="/trips" element={<Trips />} />
         {/* <Route element={<ProtectedRoute />}> <Route path="/trips" element={<Trips />} /> </Route> */}
