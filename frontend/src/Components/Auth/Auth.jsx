@@ -1,14 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { checkUser } from "./AuthService";
 
 // Make AuthModule be the gate if you need to first login or directly routes you to homepage if already logged in
 const AuthModule = () => {
+  const navigate = useNavigate();
+
+  if (checkUser()) {
+    navigate("/trips");
+  } else {
+    navigate("/auth/login");
+  }
+
   return (
-    <div>
-      <Link to="/login">
-        <button>Login</button>
-      </Link>
-    </div>
+    <>
+    </>
   );
 };
 
