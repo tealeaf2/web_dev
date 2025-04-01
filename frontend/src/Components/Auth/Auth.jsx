@@ -7,7 +7,7 @@ const AuthModule = () => {
   const navigate = useNavigate();
 
   if (checkUser()) {
-    navigate("/trips");
+    navigate("/home");
   } else {
     navigate("/auth/login");
   }

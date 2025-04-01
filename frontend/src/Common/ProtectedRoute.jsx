@@ -11,7 +11,7 @@ const ProtectedRoute = () => {
       <Header/>
       <Outlet />
     </>
-  ) : (<Navigate to="/auth/login" />);
+  ) : (<Navigate to="/auth" />);
 };
 
 export default ProtectedRoute;
