@@ -1,30 +1,28 @@
 import Home from "./Home/Home"
 import Trips from "./Trips/Trips"
-import Header from "./Header/Header"
 import Scrapbook from "./Scrapbook/Scrapbook"
 import AuthRegister from "./Auth/AuthRegister";
 import AuthLogin from "./Auth/AuthLogin";
 import AuthModule from "./Auth/Auth";
 import ProtectedRoute from "../Common/ProtectedRoute";
+import Base from "./Base/Base"
 
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 
 export default function Components() {
   return (
     <Router>
-      <Header/>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<AuthLogin/>} />
-        <Route path="/register" element={<AuthRegister/>} />
+        <Route path="/" element={<Base />} />
+        <Route path="/auth/login" element={<AuthLogin/>} />
+        <Route path="/auth/register" element={<AuthRegister/>} />
         <Route path="/auth" element={<AuthModule />} />
 
-        <Route path="/trips" element={<Trips />} />
-        {/* <Route element={<ProtectedRoute />}> <Route path="/trips" element={<Trips />} /> </Route> */}
-        <Route path="/scrapbooks" element={<Scrapbook />} />
-        {/* <Route element={<ProtectedRoute />}> <Route path="/scrapbooks" element={<Scrapbook />} /> </Route> */} 
+        <Route element={<ProtectedRoute />}> <Route path="/home" element={<Home />} /> </Route>
+        <Route element={<ProtectedRoute />}> <Route path="/trips" element={<Trips />} /> </Route>
+        <Route element={<ProtectedRoute />}> <Route path="/scrapbooks" element={<Scrapbook />} /> </Route> 
 
-        <Route path="*" element={<Navigate to="/login" replace />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>
   )
