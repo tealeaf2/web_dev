@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { checkUser, loginUser } from "./AuthService";
 import AuthForm from "./AuthForm";
 import { useNavigate } from "react-router-dom";
+import "./Auth.css";
 
 const AuthLogin = () => {
   const navigate = useNavigate();
@@ -57,19 +58,19 @@ const AuthLogin = () => {
   }
 
   return (
-    <div>
+    <>
       <AuthForm
         user={currentUser}
         isLogin={true}
         onChange={onChangeHandler}
         onSubmit={onSubmitHandler}
       />
-      <div>
+      <div className="auth-switch">
         <button onClick={onClickRegister}>
-          Not Registered?
+          Not registered? Create an account
         </button>
       </div>
-    </div>
+    </>
   );
 };
 

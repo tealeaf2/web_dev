@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <>
     <div>
-      <h1>Welcome to Scrapbook Explorer</h1>
+      <h1>welcome to digibooks!</h1>
       <p>Discover and share amazing travel experiences through scrapbooks!</p>
       <button onClick={() => navigate("/scrapbooks")}>Explore Scrapbooks</button>
 

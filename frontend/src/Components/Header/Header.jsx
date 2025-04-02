@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { logOut } from "../Auth/AuthService";
 import { useNavigate } from "react-router-dom";
+import "./Header.css";
 
 // Placeholder navbar, make better next time with About, Scrapbook, etc
 export default function Header() {
@@ -10,15 +11,20 @@ export default function Header() {
     logOut();
     navigate('/');
   }
+
   return (
-    <>
-      <div>
-        Navbar:
-        <Link to='/home'> Home</Link> - 
-        <Link to='/trips'> Trips</Link> - 
-        <Link to='/scrapbooks'> Scrapbooks</Link>
-        <button onClick={onClickLogout}>Logout</button>
-      </div> 
-    </>
-  )
+    <header className="header">
+      <Link to="/home" className="brand">
+        digibooks
+      </Link>
+      <nav className="nav-links">
+        <NavLink to='/home'>home</NavLink>
+        <NavLink to='/trips'>trips</NavLink>
+        <NavLink to='/scrapbooks'>scrapbooks</NavLink>
+        <button onClick={onClickLogout} className="logout-btn">
+          logout
+        </button>
+      </nav>
+    </header>
+  );
 }
