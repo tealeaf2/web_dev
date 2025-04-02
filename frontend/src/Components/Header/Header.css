@@ -1,0 +1,68 @@
+body, html {
+  margin: 0;
+  padding: 0;
+}
+.header {
+  background-color: #FBC9BE;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 8px rgba(105, 83, 86, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #695356;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.nav-links a {
+  color: #255F63;
+  text-decoration: none;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+}
+
+.nav-links a:hover {
+  color: #DB7B65;
+  background-color: rgba(219, 123, 101, 0.1);
+}
+
+.nav-links a.active {
+  color: #DB7B65;
+  font-weight: 600;
+}
+
+.logout-btn {
+  background-color: #255F63;
+  color: #ffffff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: #1d4b4e;
+  transform: translateY(-1px);
+}
+
+.brand {
+  color: #695356;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+} 
