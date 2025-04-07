@@ -11,10 +11,14 @@
   },
   "dependencies": {
     "@parse/react": "^0.0.1-alpha.18",
+    "@tailwindcss/vite": "^4.1.3",
+    "bootstrap": "^5.3.5",
     "parse": "^6.0.0",
     "react": "^19.0.0",
+    "react-bootstrap": "^2.10.9",
     "react-dom": "^19.0.0",
-    "react-router-dom": "^7.3.0"
+    "react-router-dom": "^7.3.0",
+    "tailwindcss": "^4.1.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
