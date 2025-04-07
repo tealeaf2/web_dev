@@ -3,12 +3,12 @@ import Parse from "parse";
 import { checkUser } from "../Components/Auth/AuthService"
 import Header from "../Components/Header/Header"
 
-const ProtectedRoute = () => {
+const ProtectedRoute = ({header}) => {
   const currentUser = checkUser(); // Check if user is logged in
   //console.log(currentUser);
   return currentUser ? (
     <>
-      <Header/>
+      {header ? <Header/> : null}
       <Outlet />
     </>
   ) : (<Navigate to="/auth/login" />);
