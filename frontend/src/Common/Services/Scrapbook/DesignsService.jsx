@@ -24,3 +24,14 @@ export const createNewDesign = ({
   }
   );
 }
+
+export const getDesignById = ({ designId }) => {
+  const Scrapbook = Parse.Object.extend("Scrapbook");
+  const query = new Parse.Query(Scrapbook);
+  return query.get(designId).then((result) => {
+    return result;
+  });
+}
+
+export const updateDesignById = () => {
+}
