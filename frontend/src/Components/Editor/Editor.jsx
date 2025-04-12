@@ -3,12 +3,8 @@ import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 import EditorHeader from "./_components/EditorHeader";
 import { getDesignById } from "../../Common/Services/Scrapbook/DesignsService";
-
-// Things you need to do:
-// Fix the login/register page to use bootstrap and tailwind css instead so that it is neater
-// - Make the design for both the pages a lot better as well
-// Develop the home page before a user is able to login/register, basically an about page about the website
-// - Make sure to also use tailwind and bootstrap to develop it as well
+import EditorSidebar from "./_components/EditorSidebar";
+import CanvasEditor from "./_components/CanvasEditor";
 
 export default function Editor() {
   const { scrapbookId } = useParams();
@@ -35,7 +31,10 @@ export default function Editor() {
   return (
     <>
       <EditorHeader name={bookName} handleNameChange={handleNameChange}/>
-      Editor Page
+      <div className='flex'>
+        <EditorSidebar/>
+        <CanvasEditor/>
+      </div>
     </>
   )
 }

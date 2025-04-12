@@ -1,26 +1,26 @@
 export const sideBarMenu = [
   {
     name: 'Templates',
-    icon: 
+    icon: <i className="bi bi-grid-1x2"></i>
   },
   {
     name: 'Elements',
-    icon:
+    icon: <i className="bi bi-menu-app"></i>
   },
   {
     name: 'Images',
-    icon:
+    icon: <i className="bi bi-image"></i>
   },
   {
     name: 'Text',
-    icon:
+    icon: <i className="bi bi-fonts"></i>
   },
   {
     name: 'AI',
-    icon:
+    icon: <i className="bi bi-stars"></i>
   },
   {
     name: 'Settings',
-    icon:
+    icon: <i className="bi bi-gear"></i>
   }
 ]
