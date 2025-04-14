@@ -4,7 +4,9 @@ import Shapes from "../Services/Editor/Shapes";
 export default function ElementsSettings() {
   return (
     <>
-      <Shapes />
+      <div>
+        <Shapes />
+      </div>
     </>
   )
 }
