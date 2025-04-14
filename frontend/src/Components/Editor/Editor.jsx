@@ -1,15 +1,17 @@
 // Main page
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 import EditorHeader from "./_components/EditorHeader";
 import { getDesignById } from "../../Common/Services/Scrapbook/DesignsService";
 import EditorSidebar from "./_components/EditorSidebar";
 import CanvasEditor from "./_components/CanvasEditor";
+import { CanvasContext } from "../../Context/CanvasContext";
 
 export default function Editor() {
   const { scrapbookId } = useParams();
   const [book, setBook] = useState(null);
   const [bookName, setBookName] = useState("")
+  const [canvasEditor, setCanvasEditor] = useState([]);
 
   useEffect(() => {
     if (!scrapbookId) return;
@@ -17,8 +19,7 @@ export default function Editor() {
     getDesignById({ designId: scrapbookId }).then((res) => {
       setBook(res);
       setBookName(res.get("name"))
-      console.log(res)
-    })    
+    })
   }, [scrapbookId])
 
   const handleNameChange = (e) => {
@@ -30,11 +31,23 @@ export default function Editor() {
 
   return (
     <>
-      <EditorHeader name={bookName} handleNameChange={handleNameChange}/>
-      <div className='flex'>
-        <EditorSidebar/>
-        <CanvasEditor/>
+      <div>
+        <CanvasContext.Provider value={{canvasEditor, setCanvasEditor}}>
+          <EditorHeader name={bookName} handleNameChange={handleNameChange} />
+          <div className='flex'>
+            <EditorSidebar />
+            <CanvasEditor book={book} />
+          </div>
+        </CanvasContext.Provider>
       </div>
     </>
   )
+}
+
+export const useCanvasHook=() => {
+  const context = useContext(CanvasContext);
+  if(!context) {
+    throw new Error("Error!")
+  }
+  return context
 }
