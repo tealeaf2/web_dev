@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Canvas } from 'fabric';
+import { Canvas, FabricText } from 'fabric';
 import { useCanvasHook } from "../Editor";
 
 export default function CanvasEditor({book}) {
@@ -33,23 +33,31 @@ export default function CanvasEditor({book}) {
     }
   }, [book])
 
-  useEffect(() => {
-    const handleKeyDown=(e) => {
-      if(e.key=='Delete' || e.key=='Backspace') {
-        if(canvasEditor) {
-          const activeObject = canvasEditor.getActiveObject();
-          if (activeObject) {
-            canvasEditor.remove(activeObject);
-            canvasEditor.renderAll();
-          }
-        }
-      }
-    }
-    document.addEventListener('keydown', handleKeyDown);
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-    }
-  }, [canvasEditor])
+  // Couldn't figure out how to use delete with text, just removed in general
+  // useEffect(() => {
+
+  //   const handleKeyDown=(e) => {
+  //     if(e.key=='Delete' || e.key=='Backspace') {
+  //       if(canvasEditor) {
+  //         const activeObject = canvasEditor.getActiveObject();
+  //         console.log(activeObject)
+  //         // if (activeObject && (activeObject instanceof FabricText)) {
+  //         //   // Allow normal text deletion behavior for text boxes
+  //         //   // This part will allow text to be deleted with backspace when text box is focused
+  //         //   return;
+  //         // } else if (activeObject) {
+  //         //   // If the active object is not a text box, remove the active object
+  //         //   canvasEditor.remove(activeObject);
+  //         //   canvasEditor.renderAll();
+  //         // }
+  //       }
+  //     }
+  //   }
+  //   document.addEventListener('keydown', handleKeyDown);
+  //   return () => {
+  //     document.removeEventListener('keydown', handleKeyDown);
+  //   }
+  // }, [canvasEditor])
 
   return (
     <>

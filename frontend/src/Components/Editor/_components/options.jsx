@@ -1,6 +1,12 @@
 import AddImageSettings from "../../../Common/Components/AddImageSettings";
 import BackgroundSettings from "../../../Common/Components/BackgroundSettings";
 import ElementsSettings from "../../../Common/Components/ElementsSettings";
+import BorderColor from "../../../Common/Components/Settings/BorderColor";
+import BorderRadius from "../../../Common/Components/Settings/BorderRadius";
+import BorderWidth from "../../../Common/Components/Settings/BorderWidth";
+import FillColor from "../../../Common/Components/Settings/FillColor";
+import Opacity from "../../../Common/Components/Settings/Opacity";
+import TextSettings from "../../../Common/Components/TextSettings";
 import circleImg from "../../../assets/elements/circle.png"
 import lineImg from "../../../assets/elements/line.png"
 import squareImg from "../../../assets/elements/square.png"
@@ -27,7 +33,8 @@ export const sideBarMenu = [
   {
     name: 'Text',
     icon: <i className="bi bi-fonts"></i>,
-    desc: 'Add Text and Heading'
+    desc: 'Add Text and Heading',
+    component: <TextSettings />
   },
   {
     name: 'Background',
@@ -35,11 +42,12 @@ export const sideBarMenu = [
     desc: 'Change Canvas Background',
     component: <BackgroundSettings/>
   },
-  {
-    name: 'AI',
-    icon: <i className="bi bi-stars"></i>,
-    desc: 'More AI Features to enhance your design'
-  },
+  // Too much and not important to do
+  // {
+  //   name: 'AI',
+  //   icon: <i className="bi bi-stars"></i>,
+  //   desc: 'More AI Features to enhance your design'
+  // },
   {
     name: 'Settings',
     icon: <i className="bi bi-gear"></i>,
@@ -69,41 +77,42 @@ export const ShapeList = [
 export const shapesSettingsList = [
   {
       name: 'Fill',
-      icon: <i class="bi bi-brush"></i>,
-      // component: <FillColor />
+      icon: <i className="bi bi-palette"></i>,
+      component: <FillColor />
   },
   {
       name: 'Stroke Color',
-      icon: <i class="bi bi-palette-fill"></i>,
-      // component: <BorderColor />
+      icon: <i className="bi bi-square"></i>,
+      component: <BorderColor />
   },
   {
       name: 'Stroke Width',
-      icon: <i class="bi bi-border-width"></i>,
-      // component: <BorderWidth />
+      icon: <i className="bi bi-border-width"></i>,
+      component: <BorderWidth />
   },
   {
       name: 'Opacity',
-      icon: <i class="bi bi-eye"></i>,
-      // component: <Opacity />
+      icon: <i className="bi bi-eye"></i>,
+      component: <Opacity />
   },
   {
       name: 'Rounded Corner',
-      icon: <i class="bi bi-square-fill"></i>,
-      // component: <BorderRadius />
+      icon: <i className="bi bi-fullscreen"></i>,
+      component: <BorderRadius />
+  },
+  {
+    name: 'Font',
+    icon: <i className="bi bi-alphabet"></i>,
+    // component: <FontFamily />
   },
   {
       name: 'Bring Front',
-      icon: <i class="bi bi-front"></i>,
+      icon: <i className="bi bi-front"></i>,
       // component: <MoveForward />
   },
   {
       name: 'Move Back',
-      icon: <i class="bi bi-layer-backward"></i>,
+      icon: <i className="bi bi-layer-backward"></i>,
       // component: <MoveBackword />
   },
-  // {
-  //     name: 'Delete',
-  //     icon: <i class="bi bi-trash"></i>
-  // }
 ]

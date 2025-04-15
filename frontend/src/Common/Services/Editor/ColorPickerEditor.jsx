@@ -1,4 +1,3 @@
-import { Circle } from 'fabric'
 import React from 'react'
 import { ChromePicker, CirclePicker } from 'react-color'
 
