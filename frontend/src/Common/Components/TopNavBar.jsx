@@ -14,7 +14,7 @@ function TopNavBar() {
 
     const updateSettingsFromSelection = () => {
       const activeObject = canvasEditor.getActiveObject();
-      console.log(activeObject)
+      // console.log(activeObject)
       if (activeObject) {
         setEnableTextSettings(!!activeObject.text); // true if it's a text object
         setShowShapeSettings(true);

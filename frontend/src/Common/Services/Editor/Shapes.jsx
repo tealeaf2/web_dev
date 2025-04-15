@@ -1,16 +1,16 @@
 import React from "react";
-import { ShapeList } from "../../../Components/Editor/_components/options";
-import { Circle, Line, Rect, Triangle } from "fabric";
+import { ShapeList, StickerList } from "../../../Components/Editor/_components/options";
+import { Circle, FabricImage, Line, Rect, Triangle } from "fabric";
 import { useCanvasHook } from "../../../Components/Editor/Editor";
 
 export default function Shapes() {
-  const {canvasEditor} = useCanvasHook();
+  const { canvasEditor } = useCanvasHook();
 
   const onShapeSelect = (shape) => {
     const properties = {
-      left:100,
-      top:100,
-      radius:50,
+      left: 100,
+      top: 100,
+      radius: 50,
       fill: 'black',
       stroke: 'black',
       width: 100,
@@ -18,42 +18,61 @@ export default function Shapes() {
       strokeWidth: 0
     }
 
-    if(shape.name=='Circle') {
+    if (shape.name == 'Circle') {
       const circleRef = new Circle({
         ...properties
       })
       canvasEditor.add(circleRef);
-    } else if(shape.name=='Square') {
+    } else if (shape.name == 'Square') {
       const squareRef = new Rect({
         ...properties
       })
       canvasEditor.add(squareRef);
-    } else if(shape.name=='Line') {
+    } else if (shape.name == 'Line') {
       const lineRef = new Line([50, 50, 200, 200], {
         ...properties,
         strokeWidth: 5
-      }) 
+      })
       canvasEditor.add(lineRef);
-    } else if(shape.name=='Triangle') {
+    } else if (shape.name == 'Triangle') {
       const triangleRef = new Triangle({
         ...properties,
-      }) 
+      })
       canvasEditor.add(triangleRef);
     }
     canvasEditor.renderAll()
   }
 
-  return (
-    <div className='grid grid-cols-3 gap-3'>
-      {ShapeList.map((shape, index) => (
-        <div className='p-2 border rounded-xl' key={index} onClick={()=>onShapeSelect(shape)}>
-          <img src={shape.icon} alt={shape.name}
-            width={100}
-            height={100}
-          />
-        </div>
-      ))}
+  const onStickerSelect = async (sticker) => {
+    if (canvasEditor) {
+      const img = await FabricImage.fromURL(sticker)
+      canvasEditor.add(img);
+      canvasEditor.renderAll();
+    }
+  }
 
+  return (
+    <div className="overflow-auto max-h-[calc(100vh-100px)] overflow-auto px-4">
+      <div className='grid grid-cols-3 gap-3'>
+        {ShapeList.map((shape, index) => (
+          <div className='p-2 border rounded-xl' key={index} onClick={() => onShapeSelect(shape)}>
+            <img src={shape.icon} alt={shape.name}
+              width={100}
+              height={100}
+            />
+          </div>
+        ))}
+      </div>
+      <div>
+        <p>Stickers</p>
+      </div>
+      <div className='grid grid-cols-3 gap-3'>
+        {StickerList.map((sticker, index) => (
+          <div className="cursor-pointer" onClick={() => onStickerSelect(sticker)} key={index}>
+            <img src={sticker} alt={'sticker-' + index} width={100} height={100} />
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
