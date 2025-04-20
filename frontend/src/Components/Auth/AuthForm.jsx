@@ -1,9 +1,16 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-const AuthForm = ({ user, isLogin, onChange, onSubmit, onForgotPassword, onSwitchForm }) => {
+const AuthForm = ({ user, isLogin, onChange, onSubmit, onSwitchForm }) => {
+  const navigate = useNavigate();
+  
   // blue pink gradient 
   const gradientStyle = {
     background: "linear-gradient(to right, #3498db, #ff69b4)"
+  };
+
+  const handleClose = () => {
+    navigate("/"); // navigate to the Base page 
   };
 
   return (
@@ -11,7 +18,7 @@ const AuthForm = ({ user, isLogin, onChange, onSubmit, onForgotPassword, onSwitc
       <div className="card shadow p-4" style={{ width: "400px", borderRadius: "8px" }}>
         
         <div className="text-end">
-          <button className="btn-close" aria-label="Close"></button>
+          <button className="btn-close" aria-label="Close" onClick={handleClose}></button>
         </div>
         
        
@@ -67,7 +74,7 @@ const AuthForm = ({ user, isLogin, onChange, onSubmit, onForgotPassword, onSwitc
             />
           </div>
           
-          {/* Password field */}
+      
           <div className="mb-3">
             <label className="form-label text-muted">Password</label>
             <input
@@ -82,20 +89,6 @@ const AuthForm = ({ user, isLogin, onChange, onSubmit, onForgotPassword, onSwitc
             />
           </div>
           
-      
-          {isLogin && (
-            <div className="text-end mb-3">
-              <a 
-                href="#" 
-                onClick={onForgotPassword} 
-                style={{ color: "#3498db", textDecoration: "none", fontSize: "14px" }}
-              >
-                Forgot Password?
-              </a>
-            </div>
-          )}
-          
-       
           <div className="mb-4">
             <button 
               type="submit" 
