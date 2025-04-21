@@ -14,11 +14,11 @@ import squareImg from "../../../assets/elements/square.png"
 import triangleImg from "../../../assets/elements/triangle.png"
 
 export const sideBarMenu = [
-  {
-    name: 'Templates',
-    icon: <i className="bi bi-grid-1x2"></i>,
-    desc: 'Select Prebuild Template'
-  },
+  // {
+  //   name: 'Templates',
+  //   icon: <i className="bi bi-grid-1x2"></i>,
+  //   desc: 'Select Prebuild Template'
+  // },
   {
     name: 'Elements',
     icon: <i className="bi bi-menu-app"></i>,

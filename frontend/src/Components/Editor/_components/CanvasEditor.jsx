@@ -2,18 +2,16 @@ import React, { useEffect, useRef, useState } from "react";
 import { Canvas, FabricText } from 'fabric';
 import { useCanvasHook } from "../Editor";
 
-export default function CanvasEditor({book}) {
+export default function CanvasEditor({ book }) {
   const canvasRef = useRef();
   const [canvas, setCanvas] = useState(null)
-  const {canvasEditor, setCanvasEditor} = useCanvasHook();
-
-  // console.log(book)
+  const { canvasEditor, setCanvasEditor } = useCanvasHook();
 
   useEffect(() => {
     if (canvasRef.current && book) {
       const initCanvas = new Canvas(canvasRef.current, {
-        width: book.get("width") / 2,
-        height: book.get("height") / 2,
+        width: book.get("width"),
+        height: book.get("height"),
         backgroundColor: '#ffffff',
         preserveObjectStacking: true,
       })
@@ -23,11 +21,18 @@ export default function CanvasEditor({book}) {
         width: book.get("width") * scaleFactor,
         height: book.get("height") * scaleFactor,
         zoom: 1 / scaleFactor
-      })      
+      })
+
+      if (book?.get("jsonTemplate")) {
+        initCanvas.loadFromJSON(book?.get("jsonTemplate"), () => {
+          initCanvas?.requestRenderAll();
+        });
+      }
+
       initCanvas.renderAll();
       setCanvas(initCanvas)
       setCanvasEditor(initCanvas);
-      return ()=>{
+      return () => {
         initCanvas.dispose();
       }
     }
@@ -62,7 +67,7 @@ export default function CanvasEditor({book}) {
   return (
     <>
       <div className="bg-secondary w-full h-screen flex items-center justify-center flex-col">
-        <canvas id='canvas' ref={canvasRef}/>
+        <canvas id='canvas' ref={canvasRef} />
       </div>
     </>
   )

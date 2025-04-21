@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { createNewDesign } from "../../../Common/Services/Scrapbook/DesignsService";
 import CustomCanvasInput from "./CustomCanvasInput";
 import { useNavigate } from "react-router-dom";
+import { getDesignsByUser } from "../../../Common/Services/Scrapbook/DesignsService";
+import { getCurrentUser } from "../../Auth/AuthService"
 
 export default function RecentDesign() {
   const [designList, setDesignList] = useState([]);
@@ -22,6 +24,16 @@ export default function RecentDesign() {
       navigate(`/editor/${result.id}`)
     });
   };
+
+  useEffect(() => {
+    const currentUser = getCurrentUser();
+  
+    if (currentUser) {
+      getDesignsByUser({ userID: currentUser.id }).then((result) => {
+        setDesignList(result);
+      });
+    }
+  }, []);
 
   return (
     <>
@@ -47,7 +59,23 @@ export default function RecentDesign() {
               onCreate={handleCreateNewDesign}
             />
           </div>
-        ) : null}
+        ) : (
+          <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5'>
+            {designList?.map((design, index) => (
+              <div key={index} className="bg-secondary rounded-lg cursor-pointer"
+              onClick={() => navigate('/editor/' + design.id)}
+              >
+                <img 
+                  src={design.get("imagePreview")?.url()} 
+                  alt={design.get("name")} 
+                  width={300} 
+                  height={300}
+                  className='w-full h-[200px] object-contain rounded-lg'
+                />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </>
   );

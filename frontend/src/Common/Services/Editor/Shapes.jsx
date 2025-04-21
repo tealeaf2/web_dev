@@ -45,7 +45,12 @@ export default function Shapes() {
 
   const onStickerSelect = async (sticker) => {
     if (canvasEditor) {
-      const img = await FabricImage.fromURL(sticker)
+      const img = await FabricImage.fromURL(
+        sticker,
+        {
+          crossOrigin: 'anonymous'
+        }
+      )
       canvasEditor.add(img);
       canvasEditor.renderAll();
     }

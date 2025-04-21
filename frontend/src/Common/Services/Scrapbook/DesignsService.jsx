@@ -33,5 +33,21 @@ export const getDesignById = ({ designId }) => {
   });
 }
 
-export const updateDesignById = () => {
-}
+export const getDesignsByUser = ({ userID }) => {
+  const Scrapbook = Parse.Object.extend("Scrapbook");
+  const query = new Parse.Query(Scrapbook);
+  
+  const userPointer = new Parse.User();
+  userPointer.id = userID;
+
+  query.equalTo("userId", userPointer);
+  
+  return query.find()
+    .then((results) => {
+      return results;
+    })
+    .catch((error) => {
+      console.error("Error fetching designs by user:", error);
+      throw error;
+    });
+};

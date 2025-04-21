@@ -34,7 +34,7 @@ export default function Editor() {
     <>
       <div>
         <CanvasContext.Provider value={{ canvasEditor, setCanvasEditor }}>
-          <EditorHeader name={bookName} handleNameChange={handleNameChange} />
+          <EditorHeader book={book} name={bookName} handleNameChange={handleNameChange} />
           <div className='flex'>
             <EditorSidebar />
             <div className="relative w-full h-screen">

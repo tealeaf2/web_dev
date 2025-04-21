@@ -18,7 +18,10 @@ export default function UploadImage() {
       const fileUrl = imageRef.get("image").url();
   
       const img = await FabricImage.fromURL(
-        fileUrl
+        fileUrl,
+        {
+          crossOrigin: 'anonymous'
+        }
       )
       img.set({
         width: 200,

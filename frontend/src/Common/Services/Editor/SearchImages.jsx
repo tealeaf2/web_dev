@@ -22,7 +22,10 @@ export default function SearchImages() {
   // Add selected image to canvas
   const addImageToCanvas = async (imageUrl) => {
     const img = await FabricImage.fromURL(
-      imageUrl
+      imageUrl,
+      {
+        crossOrigin: 'anonymous'
+      }
     )
     canvasEditor.add(img);
     canvasEditor.renderAll();

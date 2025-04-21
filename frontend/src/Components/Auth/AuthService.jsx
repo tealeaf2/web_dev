@@ -47,3 +47,7 @@ export const checkUser = () => {
 export const logOut = () => {
   Parse.User.logOut();
 }
+
+export const getCurrentUser = () => {
+  return Parse.User.current()
+}
