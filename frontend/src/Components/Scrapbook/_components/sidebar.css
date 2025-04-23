@@ -1,0 +1,15 @@
+.sidebar-item {
+  position: relative;
+}
+
+.sidebar-item .sidebar-text {
+  visibility: hidden;
+  opacity: 0; /* Start with 0 opacity */
+  transition: opacity 0.2s ease, visibility 0s linear 0.1s;
+}
+
+.sidebar-item:hover .sidebar-text {
+  visibility: visible;
+  opacity: 1; /* Fade in */
+  transition: opacity 0.2s ease, visibility 0s linear 0s;
+}
