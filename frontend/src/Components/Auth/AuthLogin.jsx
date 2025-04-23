@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { checkUser, loginUser } from "./AuthService";
 import AuthForm from "./AuthForm";
 import { useNavigate } from "react-router-dom";
-import "./Auth.css";
 
 const AuthLogin = () => {
   const navigate = useNavigate();
@@ -29,7 +28,6 @@ const AuthLogin = () => {
         if (userLoggedIn) {
           navigate("/home");
         }
-        // TODO: redirect user to main app
         setAdd(false);
       });
     }
@@ -37,9 +35,7 @@ const AuthLogin = () => {
 
   const onChangeHandler = (e) => {
     e.preventDefault();
-    // console.log(e.target);
     const { name, value: newValue } = e.target;
-    // console.log(newValue);
 
     setCurrentUser({
       ...currentUser,
@@ -49,28 +45,29 @@ const AuthLogin = () => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    // console.log("submitted: ", e.target);
     setAdd(true);
   };
 
-  const onClickRegister = () => {
-    navigate("/auth/register")
-  }
+  const onSwitchForm = (e) => {
+    e.preventDefault();
+    navigate("/auth/register");
+  };
+
+  const onForgotPassword = (e) => {
+    e.preventDefault();
+    // Handle forgot password functionality
+    alert("Forgot password functionality will be implemented soon!");
+  };
 
   return (
-    <>
-      <AuthForm
-        user={currentUser}
-        isLogin={true}
-        onChange={onChangeHandler}
-        onSubmit={onSubmitHandler}
-      />
-      <div className="auth-switch">
-        <button onClick={onClickRegister}>
-          Not registered? Create an account
-        </button>
-      </div>
-    </>
+    <AuthForm
+      user={currentUser}
+      isLogin={true}
+      onChange={onChangeHandler}
+      onSubmit={onSubmitHandler}
+      onSwitchForm={onSwitchForm}
+      onForgotPassword={onForgotPassword}
+    />
   );
 };
 

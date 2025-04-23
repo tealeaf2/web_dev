@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { checkUser, createUser } from "./AuthService";
 import AuthForm from "./AuthForm";
 import { useNavigate } from "react-router-dom";
-import "./Auth.css";
 
 const AuthRegister = () => {
   const navigate = useNavigate();
@@ -26,13 +25,11 @@ const AuthRegister = () => {
 
   // useEffect that run when changes are made to the state variable flags
   useEffect(() => {
-    // checkUser() ? history.push("/home"): null;
     if (newUser && add) {
       createUser(newUser).then((userCreated) => {
         if (userCreated) {
           navigate("/home");
         }
-        // TODO: redirect user to main app
         setAdd(false);
       });
     }
@@ -40,9 +37,7 @@ const AuthRegister = () => {
 
   const onChangeHandler = (e) => {
     e.preventDefault();
-    // console.log(e.target);
     const { name, value: newValue } = e.target;
-    // console.log(newValue);
 
     setNewUser({
       ...newUser,
@@ -52,27 +47,22 @@ const AuthRegister = () => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    console.log("submitted: ", e.target);
     setAdd(true);
   };
 
-  const onClickLogin = () => {
-    navigate("/auth/login")
-  }
+  const onSwitchForm = (e) => {
+    e.preventDefault();
+    navigate("/auth/login");
+  };
 
   return (
-    <>
-      <AuthForm
-        user={newUser}
-        onChange={onChangeHandler}
-        onSubmit={onSubmitHandler}
-      />
-      <div className="auth-switch">
-        <button onClick={onClickLogin}>
-          Already have an account? Login
-        </button>
-      </div>
-    </>
+    <AuthForm
+      user={newUser}
+      isLogin={false}
+      onChange={onChangeHandler}
+      onSubmit={onSubmitHandler}
+      onSwitchForm={onSwitchForm}
+    />
   );
 };
 
