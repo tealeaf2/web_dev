@@ -58,13 +58,13 @@ function TextSettings() {
 
   return (
     <div className="flex flex-col gap-2">
-      <p className="font-bold text-2xl p-3 bg-secondary rounded-xl cursor-pointer"
+      <p className="font-bold text-2xl p-1 cursor-pointer"
         onClick={() => onAddTextClick('Heading')}
       >Add Heading</p>
-      <p className="font-medium text-xl p-3 bg-secondary rounded-xl cursor-pointer"
+      <p className="font-medium text-xl p-1 cursor-pointer"
         onClick={() => onAddTextClick('Subheading')}
       >Add Subheading</p>
-      <p className="text-md p-3 bg-secondary rounded-xl cursor-pointer"
+      <p className="text-md p-1 cursor-pointer"
         onClick={() => onAddTextClick('Paragraph')}
       >Paragraph</p>
     </div>

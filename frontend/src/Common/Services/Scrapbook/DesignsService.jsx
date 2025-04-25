@@ -5,8 +5,8 @@ export const createNewDesign = ({
   width,
   height
 }) => {
-  const w = width || 2100;
-  const h = height || 1500;
+  const w = width || 1000;
+  const h = height || 800;
 
   const Scrapbook = Parse.Object.extend("Scrapbook");
   const newScrapbook = new Scrapbook();

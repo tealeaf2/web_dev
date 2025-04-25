@@ -1,22 +1,20 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { uploadImageWithId } from './ImageService';
 import { useCanvasHook } from '../../../Components/Editor/Editor';
 import { FabricImage } from 'fabric';
 
 export default function UploadImage() {
-  const [loading, setLoading] = useState(false);
   const { scrapbookId } = useParams();
-  const {canvasEditor} = useCanvasHook();
+  const { canvasEditor } = useCanvasHook();
 
   const onFileUpload = async (e) => {
-    setLoading(true);
     const file = e.target.files[0];
-  
+
     try {
-      const imageRef = await uploadImageWithId({ scrapbookId, image: file });
-      const fileUrl = imageRef.get("image").url();
-  
+      // const imageRef = await uploadImageWithId({ scrapbookId, image: file });
+      const fileUrl = URL.createObjectURL(file);
+
       const img = await FabricImage.fromURL(
         fileUrl,
         {
@@ -32,17 +30,26 @@ export default function UploadImage() {
     } catch (error) {
       console.error("Upload/render error:", error);
     };
-    setLoading(false);
   }
 
 
   return (
-    <div>
-      <label htmlFor='uploadImage'>
-        {/* TODO: Loader */}
-        {loading ? <></> : 'Upload Image'}
+    <div className="flex items-center mb-2">
+      <label htmlFor="uploadImage">
+        {/* Image upload button */}
+        <div className="flex items-center justify-center gap-4 rounded border border-gray-300 p-4 text-gray-900 shadow-sm sm:p-6 cursor-pointer hover:bg-gray-100 transition">
+          <span className="font-medium">Upload Image</span>
+          <i className="bi bi-upload"></i>
+        </div>
       </label>
-      <input type='file' id="uploadImage" className='hidden' multiple={false} onChange={onFileUpload}/>
+
+      <input
+        type="file"
+        id="uploadImage"
+        className="sr-only"
+        multiple={false}
+        onChange={onFileUpload}
+      />
     </div>
   )
 

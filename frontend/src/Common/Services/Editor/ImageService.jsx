@@ -2,6 +2,7 @@ import Parse from "parse"
 import Env from "../../../environments";
 import axios from 'axios'
 
+// Didn't need to make this function to register image, too labor intensive, fabric does for you
 export const uploadImageWithId = ({scrapbookId, image}) => {
   const ScrapbookImage = Parse.Object.extend("ScrapbookImage");
   const newScrapbookImage = new ScrapbookImage();

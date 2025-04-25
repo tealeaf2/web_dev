@@ -1,7 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import { logOut } from "../Auth/AuthService";
 import { useNavigate } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -16,9 +15,7 @@ export default function Header() {
       background: "linear-gradient(90deg, #3b82f6 0%, #ec4899 100%)",
       padding: "1rem 2rem",
       width: "100%",
-      position: "sticky",
       top: "0",
-      zIndex: "1000"
     }}>
       <div className="container-fluid d-flex justify-content-between align-items-center">
         <Link to="/home" style={{

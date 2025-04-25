@@ -52,7 +52,7 @@ export const sideBarMenu = [
   {
     name: 'Settings',
     icon: <i className="bi bi-gear"></i>,
-    desc: 'Update Canvas Size'
+    desc: 'Update digibook Settings'
   }
 ]
 

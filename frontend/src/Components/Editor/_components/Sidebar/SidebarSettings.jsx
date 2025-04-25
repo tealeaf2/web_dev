@@ -3,11 +3,16 @@ import React from "react";
 export default function SidebarSettings({ selectedOption }) {
 
   return (
-    <div className='w-[250px] h-screen border-r'>
-      <p className='font-bold'>{selectedOption?.name}</p>
-      <p className='text-sm text-gray-500'>{selectedOption?.desc}</p>
-      <div>
-      {selectedOption?.component}
+    <div className='w-[250px] h-screen border-r bg-white p-4 shadow-lg'>
+      {/* Title */}
+      <p className='text-xl font-semibold text-gray-800'>{selectedOption?.name}</p>
+      
+      {/* Description */}
+      <p className='text-sm text-gray-600 mb-4'>{selectedOption?.desc}</p>
+
+      {/* Settings Component */}
+      <div className='overflow-y-auto'>
+        {selectedOption?.component}
       </div>
     </div>
   )

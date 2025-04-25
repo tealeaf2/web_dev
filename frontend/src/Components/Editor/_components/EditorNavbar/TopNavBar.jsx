@@ -41,12 +41,12 @@ function TopNavBar() {
 
 
   return (
-    <div>
-      {showShapeSettings &&
-        <div className='p-3 flex flex-row bg-white'>
+    <div className="relative">
+      {showShapeSettings && (
+        <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 bg-white rounded-md shadow-lg p-2 z-50 animate-fade-in">
           <ObjectSettings showText={enableTextSettings} showImage={showImageSettings} />
         </div>
-      }
+      )}
     </div>
   )
 }

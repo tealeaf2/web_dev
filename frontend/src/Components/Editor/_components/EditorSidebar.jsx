@@ -18,13 +18,13 @@ export default function EditorSidebar() {
   return (
     <>
       <div className="flex">
-        <div className="h-screen w-16 flex-col justify-between border-e border-gray-100 bg-white border-t border-gray-100">
+        <div className="h-screen w-16 flex-col justify-between bg-[#212529]">
           {sideBarMenu.map((menu, index) => {
             const isActive = selectedOption === menu;
 
             return (
-              <div key={index} className={`sidebar-item group relative flex w-full justify-center rounded-sm px-2 py-3 text-gray-500 hover:bg-gray-50 hover:text-gray-700 cursor-pointer transition
-                ${isActive ? "bg-gray-100 text-gray-900" : ""}
+              <div key={index} className={`sidebar-item group relative flex w-full justify-center px-2 py-3 text-gray-500 hover:bg-white hover:text-gray-700 cursor-pointer transition
+                ${isActive ? "bg-white text-gray-900" : ""}
               `}
                 onClick={() => handleSelect(menu)}
               >
@@ -35,8 +35,8 @@ export default function EditorSidebar() {
               </div>
             );
           })}
-          <div className="sticky inset-x-0 bottom-0 border-t border-gray-100 bg-white p-2">
-            <div className="group relative flex w-full justify-center rounded-lg px-2 py-1.5 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+          <div className="bottom-0 border-t border-gray-700 bg-[#212529]">
+            <div className="sidebar-item group relative flex w-full justify-center px-2 py-3 text-sm text-gray-500 hover:bg-white hover:text-gray-700 cursor-pointer"
             onClick={() => navigate('/scrapbooks')}
             >
               <i className="bi bi-box-arrow-left"></i>

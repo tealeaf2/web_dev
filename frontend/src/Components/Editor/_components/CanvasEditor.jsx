@@ -33,6 +33,7 @@ export default function CanvasEditor({ book }) {
       initCanvas.renderAll();
       setCanvas(initCanvas)
       setCanvasEditor(initCanvas);
+
       return () => {
         initCanvas.dispose();
       }

@@ -23,3 +23,17 @@ export const saveDesign = ({ blob, objectId, design }) => {
       throw error;
     });
 };
+export const updateName = ({ name, id }) => {
+  const Scrapbook = Parse.Object.extend("Scrapbook");
+  const query = new Parse.Query(Scrapbook);
+
+  return query.get(id)
+    .then((scrapbook) => {
+      scrapbook.set("name", name);
+      return scrapbook.save();
+    })
+    .catch((error) => {
+      console.error("Error updating name:", error);
+      throw new Error("Failed to update the scrapbook name.");
+    });
+};

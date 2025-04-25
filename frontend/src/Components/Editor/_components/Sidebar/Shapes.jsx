@@ -57,10 +57,10 @@ export default function Shapes() {
   }
 
   return (
-    <div className="overflow-auto max-h-[calc(100vh-100px)] overflow-auto px-4">
+    <div className="">
       <div className='grid grid-cols-3 gap-3'>
         {ShapeList.map((shape, index) => (
-          <div className='p-2 border rounded-xl' key={index} onClick={() => onShapeSelect(shape)}>
+          <div className='border rounded-xl' key={index} onClick={() => onShapeSelect(shape)}>
             <img src={shape.icon} alt={shape.name}
               width={100}
               height={100}
@@ -69,9 +69,9 @@ export default function Shapes() {
         ))}
       </div>
       <div>
-        <p>Stickers</p>
+        <p className='text-xl font-semibold text-gray-800 my-2'>Stickers</p>
       </div>
-      <div className='grid grid-cols-3 gap-3'>
+      <div className='grid grid-cols-3 gap-3 overflow-auto h-[63vh]'>
         {StickerList.map((sticker, index) => (
           <div className="cursor-pointer" onClick={() => onStickerSelect(sticker)} key={index}>
             <img src={sticker} alt={'sticker-' + index} width={100} height={100} />
