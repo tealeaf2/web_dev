@@ -1,6 +1,6 @@
-import React, { useState, useEffect, act } from 'react'
+import React, { useState, useEffect } from 'react'
 import ObjectSettings from './Settings/ObjectSettings'
-import { useCanvasHook } from '../../Components/Editor/Editor'
+import { useCanvasHook } from '../../Editor';
 
 function TopNavBar() {
   const { canvasEditor } = useCanvasHook();

@@ -18,7 +18,6 @@ export default function RecentDesign() {
 
   // Event function to call createNewDesign
   const handleCreateNewDesign = (formData) => {
-    console.log(formData)
     const { name, width, height } = formData;
     createNewDesign({ name, width, height }).then((result) => {
       navigate(`/editor/${result.id}`)
@@ -27,7 +26,7 @@ export default function RecentDesign() {
 
   useEffect(() => {
     const currentUser = getCurrentUser();
-  
+
     if (currentUser) {
       getDesignsByUser({ userID: currentUser.id }).then((result) => {
         setDesignList(result);
@@ -38,7 +37,7 @@ export default function RecentDesign() {
   return (
     <>
       <div className="mt-5">
-        <h2 className="font-bold text-2xl">Recent Designs</h2>
+        <h2 className="font-bold text-2xl">Recent digibooks</h2>
 
         {designList.length === 0 ? (
           <div className="flex flex-col gap-4 justify-content items-center">
@@ -53,25 +52,30 @@ export default function RecentDesign() {
             >
               + Create New
             </button>
-            <CustomCanvasInput
-              formData={formData}
-              setFormData={setFormData}
-              onCreate={handleCreateNewDesign}
-            />
           </div>
         ) : (
           <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5'>
             {designList?.map((design, index) => (
-              <div key={index} className="bg-secondary rounded-lg cursor-pointer"
-              onClick={() => navigate('/editor/' + design.id)}
-              >
-                <img 
-                  src={design.get("imagePreview")?.url()} 
-                  alt={design.get("name")} 
-                  width={300} 
-                  height={300}
-                  className='w-full h-[200px] object-contain rounded-lg'
-                />
+              <div className="group" key={index}>
+                <div className="bg-secondary rounded-lg cursor-pointer shadow-sm transition-opacity group-hover:opacity-70"
+                  onClick={() => navigate('/editor/' + design.id)}
+                >
+                  <img
+                    src={design.get("imagePreview")?.url()}
+                    alt={design.get("name")}
+                    width={200}
+                    height={200}
+                    className='w-full h-[200px] object-contain rounded-lg'
+                  />
+                </div>
+                <div className="flex justify-between items-center w-full">
+                  <div className="text-left font-medium">
+                    {design.get("name")}
+                  </div>
+                  <div className="text-right text-sm text-gray-500">
+                    Options
+                  </div>
+                </div>
               </div>
             ))}
           </div>

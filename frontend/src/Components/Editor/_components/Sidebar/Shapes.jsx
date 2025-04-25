@@ -1,7 +1,7 @@
 import React from "react";
-import { ShapeList, StickerList } from "../../../Components/Editor/_components/options";
+import { ShapeList, StickerList } from "../options";
 import { Circle, FabricImage, Line, Rect, Triangle } from "fabric";
-import { useCanvasHook } from "../../../Components/Editor/Editor";
+import { useCanvasHook } from "../../Editor";
 
 export default function Shapes() {
   const { canvasEditor } = useCanvasHook();

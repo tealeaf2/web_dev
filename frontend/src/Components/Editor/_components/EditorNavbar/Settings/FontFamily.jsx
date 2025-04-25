@@ -1,6 +1,6 @@
 import React from 'react'
-import { FontFamilyList } from '../../../Components/Editor/_components/options'
-import { useCanvasHook } from '../../../Components/Editor/Editor'
+import { FontFamilyList } from '../../options'
+import { useCanvasHook } from '../../../Editor';
 
 function FontFamily() {
   const { canvasEditor } = useCanvasHook();

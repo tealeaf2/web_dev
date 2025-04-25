@@ -5,12 +5,15 @@ export const createNewDesign = ({
   width,
   height
 }) => {
+  const w = width || 2100;
+  const h = height || 1500;
+
   const Scrapbook = Parse.Object.extend("Scrapbook");
   const newScrapbook = new Scrapbook();
   const currentUser = Parse.User.current();
 
-  const intWidth = parseInt(width);
-  const intHeight = parseInt(height);
+  const intWidth = parseInt(w);
+  const intHeight = parseInt(h);
 
   newScrapbook.set("name", name)
   newScrapbook.set("width", intWidth)
@@ -20,9 +23,8 @@ export const createNewDesign = ({
   return newScrapbook.save().then((result) => {
     return result;
   }).catch((e) => {
-    console.error(e)
-  }
-  );
+    console.error(e);
+  });
 }
 
 export const getDesignById = ({ designId }) => {

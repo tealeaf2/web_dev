@@ -1,5 +1,5 @@
 import React from 'react'
-import { useCanvasHook } from '../../Components/Editor/Editor'
+import { useCanvasHook } from '../../Editor';
 import { IText } from 'fabric';
 
 function TextSettings() {

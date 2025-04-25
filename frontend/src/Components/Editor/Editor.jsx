@@ -6,7 +6,7 @@ import { getDesignById } from "../../Common/Services/Scrapbook/DesignsService";
 import EditorSidebar from "./_components/EditorSidebar";
 import CanvasEditor from "./_components/CanvasEditor";
 import { CanvasContext } from "../../Context/CanvasContext";
-import TopNavBar from "../../Common/Components/TopNavBar";
+import TopNavBar from "./_components/EditorNavbar/TopNavBar";
 
 export default function Editor() {
   const { scrapbookId } = useParams();
