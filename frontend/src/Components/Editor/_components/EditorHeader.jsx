@@ -76,18 +76,18 @@ export default function EditorHeader({ book, name, handleNameChange }) {
           />
         </div>
 
-        <div className="w-1/3 flex justify-end space-x-3">
+        <div className="w-1/3 flex justify-end space-x-3 gap-3">
           <button
             onClick={onSave}
-            className="text-pink-600 hover:bg-gray-100 font-medium px-4"
+            className="btn btn-light !text-sm"
           >
-            Save
+            Save <i className="pl-3 bi bi-save"></i>
           </button>
           <button
             onClick={onExport}
-            className="text-blue-600 hover:bg-gray-100 font-medium px-4"
+            className="btn btn-light !text-sm"
           >
-            Export
+            Export <i className="pl-3 bi bi-download"></i>
           </button>
         </div>
       </div>

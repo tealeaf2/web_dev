@@ -3,7 +3,7 @@ import React from "react";
 export default function SidebarSettings({ selectedOption }) {
 
   return (
-    <div className='w-[250px] h-screen border-r bg-white p-4 shadow-lg'>
+    <div className='w-[250px] h-screen bg-white p-4 shadow-xl'>
       {/* Title */}
       <p className='text-xl font-semibold text-gray-800'>{selectedOption?.name}</p>
       

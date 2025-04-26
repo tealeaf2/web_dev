@@ -53,3 +53,32 @@ export const getDesignsByUser = ({ userID }) => {
       throw error;
     });
 };
+
+export const deleteDesignById = ({ id }) => {
+  const Scrapbook = Parse.Object.extend("Scrapbook");
+  const query = new Parse.Query(Scrapbook);
+
+  query.get(id)
+  .then((design) => {
+    // Delete the design object
+    return design.destroy();
+  }).catch((err) => {
+    console.error(err)
+  })
+}
+
+export const publishDesign = ({ id, location, desc, name }) => {
+  const Scrapbook = Parse.Object.extend("Scrapbook");
+  const query = new Parse.Query(Scrapbook);
+
+  return query.get(id).then((design) => {
+    design.set("name", name);
+    design.set("locationId", location);
+    design.set("description", desc);
+    design.set("isPublished", true);
+    return design.save();
+
+  }).catch((err) => {
+    console.error(err);
+  })
+}

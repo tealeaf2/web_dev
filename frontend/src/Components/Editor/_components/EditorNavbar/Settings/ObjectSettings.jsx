@@ -19,6 +19,8 @@ function ObjectSettings({ showText, showImage }) {
     setShowIndex(showIndex === index ? null : index);
   };
 
+  const isPopoverOpen = showIndex !== null;
+
   const onDelete = () => {
     const activeObject = canvasEditor?.getActiveObject();
     if (activeObject) {
@@ -69,7 +71,7 @@ function ObjectSettings({ showText, showImage }) {
         >
           <div
             onClick={(e) => handleClick(e, index)}
-            className="cursor-pointer hover:scale-110 transition-all"
+            className={`cursor-pointer hover:scale-110 transition-all ${isPopoverOpen ? 'pointer-events-none' : ''}`}
           >
             {shape.icon}
           </div>

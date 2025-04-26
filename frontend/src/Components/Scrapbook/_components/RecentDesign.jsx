@@ -1,38 +1,41 @@
-import React, { useState, useEffect } from "react";
-import { createNewDesign } from "../../../Common/Services/Scrapbook/DesignsService";
-import CustomCanvasInput from "./CustomCanvasInput";
+import React, { useState, useEffect, useRef } from "react";
+import Overlay from 'react-bootstrap/Overlay';
+import Popover from 'react-bootstrap/Popover';
+import PublishInput from "./PublishInput";
 import { useNavigate } from "react-router-dom";
-import { getDesignsByUser } from "../../../Common/Services/Scrapbook/DesignsService";
+import { getDesignsByUser, deleteDesignById } from "../../../Common/Services/Scrapbook/DesignsService";
 import { getCurrentUser } from "../../Auth/AuthService"
 
 export default function RecentDesign() {
+  const [showIndex, setShowIndex] = useState(null);
+  const [target, setTarget] = useState(null);
+  const containerRefs = useRef([]);
   const [designList, setDesignList] = useState([]);
   const navigate = useNavigate();
 
-  // Single object to store form data
-  const [formData, setFormData] = useState({
-    name: "",
-    width: "",
-    height: "",
-  });
-
-  // Event function to call createNewDesign
-  const handleCreateNewDesign = (formData) => {
-    const { name, width, height } = formData;
-    createNewDesign({ name, width, height }).then((result) => {
-      navigate(`/editor/${result.id}`)
-    });
+  const handleClick = (event, index) => {
+    setTarget(event.target);
+    setShowIndex(showIndex === index ? null : index);
   };
+
+  const isPopoverOpen = showIndex !== null;
 
   useEffect(() => {
     const currentUser = getCurrentUser();
 
     if (currentUser) {
       getDesignsByUser({ userID: currentUser.id }).then((result) => {
-        setDesignList(result);
+        const developedDesigns = result.filter((design) => design.get("isPublished") === false);
+        setDesignList(developedDesigns);
       });
     }
   }, []);
+
+  const handleDelete = (id) => {
+    // Delete the design from the database and then from designList
+    deleteDesignById({ id: id })
+    setDesignList((prevDesignList) => prevDesignList.filter((design) => design.id !== id));
+  };
 
   return (
     <>
@@ -56,25 +59,63 @@ export default function RecentDesign() {
         ) : (
           <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5'>
             {designList?.map((design, index) => (
-              <div className="group" key={index}>
-                <div className="bg-secondary rounded-lg cursor-pointer shadow-sm transition-opacity group-hover:opacity-70"
-                  onClick={() => navigate('/editor/' + design.id)}
-                >
-                  <img
-                    src={design.get("imagePreview")?.url()}
-                    alt={design.get("name")}
-                    width={200}
-                    height={200}
-                    className='w-full h-[200px] object-contain rounded-lg'
-                  />
+              <div key={index}>
+                <div
+                  className="group"
+                  ref={(el) => (containerRefs.current[index] = el)}>
+                  <div className="bg-secondary rounded-lg shadow-sm transition-opacity hover:opacity-70"
+                    onClick={() => navigate('/editor/' + design.id)}
+                  >
+                    <img
+                      src={design.get("imagePreview")?.url()}
+                      alt={design.get("name")}
+                      width={200}
+                      height={200}
+                      className='w-full h-[200px] object-contain rounded-lg cursor-pointer'
+                    />
+                  </div>
+                  <div className="flex justify-between items-center w-full">
+                    <div className="text-left font-medium">
+                      {design.get("name")}
+                    </div>
+                    <div className={`text-right text-[#212529] hover:scale-110 transition-all ${isPopoverOpen ? 'pointer-events-none' : ''}`}
+                      onClick={(e) => handleClick(e, index)}
+                    >
+                      <i className="bi bi-three-dots cursor-pointer"></i>
+                    </div>
+
+                    <Overlay
+                      show={showIndex === index}
+                      target={target}
+                      placement="bottom"
+                      container={containerRefs.current[index]}
+                      rootClose
+                      onHide={() => setShowIndex(null)}
+                      transition={true}
+                    >
+                      <Popover id={`popover-${index}`}>
+                        <Popover.Body>
+                          <div className="list-group cursor-pointer">
+                            <button className='list-group-item list-group-item-action'
+                              data-bs-toggle="modal"
+                              data-bs-target="#publishInput"
+                              onClick={() => setShowIndex(null)}
+                            >
+                              Publish
+                            </button>
+                            <button className='list-group-item list-group-item-action'
+                              onClick={() => handleDelete(design.id)}
+                            >
+                              Delete
+                            </button>
+                          </div>
+                        </Popover.Body>
+                      </Popover>
+                    </Overlay>
+                  </div>
                 </div>
-                <div className="flex justify-between items-center w-full">
-                  <div className="text-left font-medium">
-                    {design.get("name")}
-                  </div>
-                  <div className="text-right text-sm text-gray-500">
-                    Options
-                  </div>
+                <div>
+                  <PublishInput digibook={design} />
                 </div>
               </div>
             ))}

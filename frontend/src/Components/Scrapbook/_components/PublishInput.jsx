@@ -1,0 +1,107 @@
+import React, { useState } from 'react'
+import { publishDesign } from '../../../Common/Services/Scrapbook/DesignsService'
+import AutoComplete from "react-google-autocomplete";
+import Env from '../../../environments'
+
+function PublishInput({ digibook }) {
+  const [desc, setDesc] = useState('');
+  const [location, setLocation] = useState('');
+  const [title, setTitle] = useState(digibook.get("name") || '');
+
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value);
+  };
+
+  const handlePublish = (e) => {
+    e.preventDefault();
+
+    if (!title || !desc || !location) {
+      alert("Please fill in all fields!");
+      return;
+    }
+
+    publishDesign({ id: digibook.id, name: title, desc: desc, location: location }).then(() => {
+      window.location.reload();
+    })
+
+  }
+
+  return (
+    <div>
+      <div
+        className="modal fade"
+        id="publishInput"
+        tabIndex="-1"
+        aria-labelledby="canvasInputLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h1 className="modal-title fs-5" id="canvasInputLabel">
+                Publish Your digibook!
+              </h1>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div className="modal-body">
+              <div className="mb-3">
+                <label className="form-label">Title:</label>
+                <input
+                    required
+                    type="text"
+                    className="form-control"
+                    id="inputName"
+                    name="name"
+                    value={title}
+                    onChange={handleTitleChange}
+                    placeholder="My Amazing Trip!"
+                  />
+              </div>
+              <div className="mb-3">
+                <label className="form-label">Location:</label>
+                <div className="input-group">
+                  <AutoComplete
+                    apiKey={Env.GOOGLE_MAPS_PLATFORM_KEY}
+                    onPlaceSelected={(place) => {
+                      setLocation(place.place_id)
+                    }}
+                    className="form-control"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="mb-3">
+                <label className="form-label">Description:</label>
+                <textarea
+                  required
+                  className="form-control"
+                  value={desc}
+                  onChange={(e) => setDesc(e.target.value)}
+                  rows="3"
+                  placeholder="Write about your digibook..."
+                />
+              </div>
+            </div>
+            <div className="modal-footer">
+              <button
+                onClick={handlePublish}
+                className="btn btn-primary w-100"
+                data-bs-dismiss="modal"
+              >
+                Create
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default PublishInput

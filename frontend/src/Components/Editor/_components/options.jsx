@@ -1,6 +1,7 @@
 import AddImageSettings from "./Sidebar/AddImageSettings";
 import BackgroundSettings from "./Sidebar/BackgroundSettings";
 import ElementsSettings from "./Sidebar/ElementsSettings";
+import CanvasSettings from "./Sidebar/CanvasSettings";
 import BorderColor from "./EditorNavbar/Settings/BorderColor";
 import BorderRadius from "./EditorNavbar/Settings/BorderRadius";
 import BorderWidth from "./EditorNavbar/Settings/BorderWidth";
@@ -52,7 +53,8 @@ export const sideBarMenu = [
   {
     name: 'Settings',
     icon: <i className="bi bi-gear"></i>,
-    desc: 'Update digibook Settings'
+    desc: 'Update digibook Settings',
+    component: <CanvasSettings />
   }
 ]
 
