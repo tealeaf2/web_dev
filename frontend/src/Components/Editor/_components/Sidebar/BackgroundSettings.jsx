@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import ColorPickerEditor from "../Services/Editor/ColorPickerEditor";
-import { useCanvasHook } from "../../Components/Editor/Editor";
+import ColorPickerEditor from "./ColorPickerEditor";
+import { useCanvasHook } from "../../Editor";
 
 export default function BackgroundSettings() {
   const [bgColor, setBgColor] = useState('#fff')

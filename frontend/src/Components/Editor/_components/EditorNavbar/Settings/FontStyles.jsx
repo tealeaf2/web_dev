@@ -1,5 +1,5 @@
 import React from 'react';
-import { useCanvasHook } from '../../../Components/Editor/Editor';
+import { useCanvasHook } from '../../../Editor';
 
 function FontStyles() {
   const { canvasEditor } = useCanvasHook();

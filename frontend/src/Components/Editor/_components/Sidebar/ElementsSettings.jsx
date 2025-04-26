@@ -1,5 +1,5 @@
 import React from "react";
-import Shapes from "../Services/Editor/Shapes";
+import Shapes from "./Shapes";
 
 export default function ElementsSettings() {
   return (

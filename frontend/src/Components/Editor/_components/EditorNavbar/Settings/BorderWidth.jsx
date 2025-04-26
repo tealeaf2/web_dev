@@ -1,18 +1,18 @@
-import React, {useState, useEffect} from 'react'
-import { useCanvasHook } from '../../../Components/Editor/Editor';
+import React, { useState, useEffect } from 'react'
+import { useCanvasHook } from '../../../Editor';
 
-function BorderRadius() {
+function BorderWidth() {
   const { canvasEditor } = useCanvasHook();
-  const [radius, setRadius] = useState(0)
+  const [width, setWidth] = useState(0)
 
   useEffect(() => {
     const activeObj = canvasEditor.getActiveObject();
     if (activeObj) {
-      setRadius(activeObj.rx);
+      setWidth(activeObj.strokeWidth);
     }
   }, []);
 
-  const onRadiusChange = (e) => {
+  const onWidthChange = (e) => {
     const value = parseInt(e.target.value, 10);
     const activeObj = canvasEditor.getActiveObject();
     if (!activeObj) {
@@ -20,27 +20,26 @@ function BorderRadius() {
     }
 
     activeObj.set({
-      rx: value,
-      ry: value,
+      strokeWidth: value,
     })
-    setRadius(value);
+    setWidth(value);
     canvasEditor.renderAll();
   }
 
   return (
     <div className="w-[220px]">
-      <label htmlFor="borderRadius" className="form-label">Border Radius: {radius}</label>
+      <label htmlFor="borderWidth" className="form-label">Border Width: {width}</label>
       <input 
         type="range" 
         className="form-range w-full" 
         min="0" 
-        max="50" 
+        max="20" 
         step="1" 
-        id="borderRadius"
-        value={radius}
-        onChange={onRadiusChange}/>
+        id="borderWidth"
+        value={width}
+        onChange={onWidthChange}/>
     </div>
   )
 }
 
-export default BorderRadius
+export default BorderWidth

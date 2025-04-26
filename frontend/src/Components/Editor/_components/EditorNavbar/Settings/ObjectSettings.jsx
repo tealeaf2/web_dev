@@ -1,8 +1,8 @@
 import React, { useRef, useState } from 'react';
-import { shapesSettingsList } from '../../../Components/Editor/_components/options';
+import { shapesSettingsList } from '../../options';
 import Overlay from 'react-bootstrap/Overlay';
 import Popover from 'react-bootstrap/Popover';
-import { useCanvasHook } from '../../../Components/Editor/Editor';
+import { useCanvasHook } from '../../../Editor';
 import FontStyles from './FontStyles';
 
 function ObjectSettings({ showText, showImage }) {
@@ -18,6 +18,8 @@ function ObjectSettings({ showText, showImage }) {
     setTarget(event.target);
     setShowIndex(showIndex === index ? null : index);
   };
+
+  const isPopoverOpen = showIndex !== null;
 
   const onDelete = () => {
     const activeObject = canvasEditor?.getActiveObject();
@@ -69,7 +71,7 @@ function ObjectSettings({ showText, showImage }) {
         >
           <div
             onClick={(e) => handleClick(e, index)}
-            className="cursor-pointer hover:scale-110 transition-all"
+            className={`cursor-pointer hover:scale-110 transition-all ${isPopoverOpen ? 'pointer-events-none' : ''}`}
           >
             {shape.icon}
           </div>

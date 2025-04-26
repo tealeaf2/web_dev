@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Canvas, FabricText } from 'fabric';
+import { Canvas, FabricText} from 'fabric';
 import { useCanvasHook } from "../Editor";
 
 export default function CanvasEditor({ book }) {
@@ -14,6 +14,7 @@ export default function CanvasEditor({ book }) {
         height: book.get("height"),
         backgroundColor: '#ffffff',
         preserveObjectStacking: true,
+        renderOnAddRemove: false,
       })
 
       const scaleFactor = window.devicePixelRatio || 1
@@ -23,15 +24,16 @@ export default function CanvasEditor({ book }) {
         zoom: 1 / scaleFactor
       })
 
-      if (book?.get("jsonTemplate")) {
-        initCanvas.loadFromJSON(book?.get("jsonTemplate"), () => {
-          initCanvas?.requestRenderAll();
-        });
+      if (book?.get("jsonTemplate") && book.get("jsonTemplate").objects.length > 0) {
+        initCanvas.loadFromJSON(book.get("jsonTemplate"), () => {
+          initCanvas.requestRenderAll();
+        })
       }
 
       initCanvas.renderAll();
       setCanvas(initCanvas)
       setCanvasEditor(initCanvas);
+
       return () => {
         initCanvas.dispose();
       }

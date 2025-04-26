@@ -57,20 +57,38 @@ export default function EditorHeader({ book, name, handleNameChange }) {
 
   return (
     <>
-      <div className="p-3 flex flex-row justify-between">
-        <div>
+      <div className="flex flex-row justify-between text-white" style={{
+        background: "linear-gradient(90deg, #3b82f6 0%, #ec4899 100%)",
+        padding: "1rem 2rem",
+        width: "100%",
+        top: "0",
+      }}>
+        <div className="w-1/3 text-white font-bold">
+          digibooks
+        </div>
+        {/* Centered Input as Header */}
+        <div className="w-1/3 flex justify-center">
           <input
             placeholder="digibook name"
             value={name}
             onChange={handleNameChange}
-            className="border-none outline-none" />
+            className="text-center text-xl font-semibold bg-transparent border-none outline-none text-white placeholder-gray-400 w-full max-w-md"
+          />
         </div>
 
-        <div>
-          <button onClick={() => onSave()}>Save</button>
-        </div>
-        <div>
-          <button onClick={() => onExport()}>Export</button>
+        <div className="w-1/3 flex justify-end space-x-3 gap-3">
+          <button
+            onClick={onSave}
+            className="btn btn-light !text-sm"
+          >
+            Save <i className="pl-3 bi bi-save"></i>
+          </button>
+          <button
+            onClick={onExport}
+            className="btn btn-light !text-sm"
+          >
+            Export <i className="pl-3 bi bi-download"></i>
+          </button>
         </div>
       </div>
     </>

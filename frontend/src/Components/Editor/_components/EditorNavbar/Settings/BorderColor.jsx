@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
-import ColorPickerEditor from '../../Services/Editor/ColorPickerEditor'
-import { useCanvasHook } from '../../../Components/Editor/Editor';
+import ColorPickerEditor from '../../Sidebar/ColorPickerEditor'
+import { useCanvasHook } from '../../../Editor';
 
 function BorderColor() {
   const [color, setColor] = useState('#000');

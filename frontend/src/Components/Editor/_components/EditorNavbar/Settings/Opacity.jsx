@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useCanvasHook } from '../../../Components/Editor/Editor';
+import { useCanvasHook } from '../../../Editor';
 
 function Opacity() {
   const { canvasEditor } = useCanvasHook();
