@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { publishDesign } from '../../../Common/Services/Scrapbook/DesignsService'
-import AutoComplete from "react-google-autocomplete";
+import Autocomplete from "react-google-autocomplete";
 import Env from '../../../environments'
 
 function PublishInput({ digibook }) {
@@ -65,10 +65,21 @@ function PublishInput({ digibook }) {
               <div className="mb-3">
                 <label className="form-label">Location:</label>
                 <div className="input-group">
-                  <AutoComplete
+                  <Autocomplete
                     apiKey={Env.GOOGLE_MAPS_PLATFORM_KEY}
                     onPlaceSelected={(place) => {
-                      setLocation(place.place_id)
+                      setLocation(place)
+                      console.log(place)
+                    }}
+                    options={{
+                      types: [],
+                      fields: [
+                        "place_id",
+                        "name",
+                        "formatted_address",
+                        "geometry",
+                        "photo"
+                      ]
                     }}
                     className="form-control"
                     required

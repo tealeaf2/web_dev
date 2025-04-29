@@ -69,16 +69,49 @@ export const deleteDesignById = ({ id }) => {
 
 export const publishDesign = ({ id, location, desc, name }) => {
   const Scrapbook = Parse.Object.extend("Scrapbook");
-  const query = new Parse.Query(Scrapbook);
+  const Place = Parse.Object.extend("Place");
+  const scrapbookQuery = new Parse.Query(Scrapbook);
+  const placeQuery = new Parse.Query(Place);
 
-  return query.get(id).then((design) => {
-    design.set("name", name);
-    design.set("locationId", location);
-    design.set("description", desc);
-    design.set("isPublished", true);
-    return design.save();
+  return scrapbookQuery.get(id)
+    .then((design) => {
+      return placeQuery.equalTo("placeId", location.place_id).first()
+        .then((existingPlace) => {
+          if (existingPlace) {
+            // Place already exists
+            return existingPlace;
+          } else {
+            // Create a new Place
+            const newPlace = new Place();
+            newPlace.set("placeId", location.place_id);
+            newPlace.set("name", location.name);
+            newPlace.set("address", location.formatted_address);
+            
+            const lat = location.geometry?.location?.lat();
+            const lng = location.geometry?.location?.lng();
+            if (lat && lng) {
+              const geoPoint = new Parse.GeoPoint({ latitude: lat, longitude: lng });
+              newPlace.set("coordinate", geoPoint);
+            }
 
-  }).catch((err) => {
-    console.error(err);
-  })
-}
+            if (location.photos && location.photos.length > 0) {
+              newPlace.set("photoUrl", location.photos[0].getUrl());
+            }
+
+            return newPlace.save();
+          }
+        })
+        .then((place) => {
+          // Now update the scrapbook
+          design.set("name", name);
+          design.set("locationId", location.place_id);
+          design.set("description", desc);
+          design.set("isPublished", true);
+          design.set("placeId", place); // Pointer to Place
+          return design.save();
+        });
+    })
+    .catch((err) => {
+      console.error("Error publishing design:", err);
+    });
+};
