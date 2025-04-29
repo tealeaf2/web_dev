@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Autocomplete from "react-google-autocomplete";
 import DisplayDigibook from './_components/DisplayDigibook';
 import Loading from './_components/Loading';
+import DisplayLocation from './_components/DisplayLocation';
 import { useParams, useNavigate } from 'react-router-dom'
 import { searchPlace, searchDigibooks } from '../../Common/Services/TripsService';
 import Env from '../../environments';
@@ -57,7 +58,7 @@ function SearchTrips() {
   return (
     <>
       <div>
-        <div className="m-3 w-1/2">
+        <div className="m-3 w-3/4">
           <div className="input-group">
             <Autocomplete
               id="searchInput"
@@ -79,9 +80,20 @@ function SearchTrips() {
             <button className="btn btn-primary" type="button"
               onClick={onSearchClick}
             ><i className="bi bi-search"></i></button>
+
+            {/* TODO: Make a sort option */}
+            {/* <div className="ml-4">
+              Dropdown
+            </div> */}
           </div>
         </div>
-        <hr />
+
+        <div>
+          {place && results && <DisplayLocation location={place} results={results} />}
+        </div>
+
+        <hr/>
+
         {render ? (
           <div>
             <div className="ml-4 text-2xl font-semibold text-gray-800 flex items-center gap-2">
@@ -95,8 +107,8 @@ function SearchTrips() {
 
             {results.length === 0 && (
               <div className="text-center p-4">
-                <h4 className="font-semibold text-gray-800">Be the first to publish a Digibook!</h4>
-                <p className="text-gray-600 mt-2 text-xs">Start creating and sharing your Digibook today!</p>
+                <h4 className="font-semibold text-gray-800">Be the first to publish a digibook!</h4>
+                <p className="text-gray-600 mt-2 text-xs">Start creating and sharing your digibook today!</p>
                 <div className="cursor-pointer transition-all hover:scale-120 transition-transform duration-300 transform hover:rotate-180"
                   onClick={() => navigate("/scrapbooks")}
                 >

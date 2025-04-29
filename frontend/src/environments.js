@@ -1,5 +1,5 @@
 // Had to change this to a const instead so that it would work?
-
+// Awful practice btw
 const Env = {
   APPLICATION_ID: "4j5XHaq1S15MdLoDqDjNxwtwKJqwEgFjswEHGIJP",
   JAVASCRIPT_KEY: "wook2bRkXekLk6pQvMWJLSe5BWvPXgM7XjrVDvNx",

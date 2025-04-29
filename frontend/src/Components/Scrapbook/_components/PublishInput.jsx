@@ -27,7 +27,7 @@ function PublishInput({ digibook }) {
   }
 
   const onRatingChange = (e) => {
-    const value = parseFloat(e.target.value);
+    const value = parseInt(e.target.value);
     setRating(value);
   }
 
@@ -98,10 +98,10 @@ function PublishInput({ digibook }) {
                 </label>
                 <input
                   type="range"
-                  class="form-range"
+                  className="form-range"
                   min="0"
                   max="5"
-                  step="0.5"
+                  step="1"
                   id="ratingInput"
                   value={rating}
                   onChange={onRatingChange}
