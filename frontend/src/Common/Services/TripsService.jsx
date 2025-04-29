@@ -60,3 +60,40 @@ export const searchPlace = (place) => {
       throw error;
     });
 };
+
+export const getCommentsFromId = (id) => {
+  if (!id) return Promise.resolve([]);
+
+  const Comment = Parse.Object.extend("Comment");
+  const Scrapbook = Parse.Object.extend("Scrapbook");
+
+  const scrapbookRef = new Scrapbook();
+  scrapbookRef.id = id;
+
+  const query = new Parse.Query(Comment);
+  query.equalTo("scrapbookId", scrapbookRef);
+  query.include("userId");
+
+  return query.find()
+    .then((results) => results)
+    .catch((error) => {
+      console.error("Error searching comments:", error);
+      throw error;
+    });
+};
+
+export const submitComment = ({scrapbookId, userId, comment}) => {
+  const Comment = Parse.Object.extend('Comment');
+  const newComment = new Comment();
+
+  const Scrapbook = new Parse.Object('Scrapbook');
+  Scrapbook.id = scrapbookId;
+
+  const User = new Parse.User();
+  User.id = userId;
+
+  newComment.set('scrapbookId', Scrapbook);
+  newComment.set('userId', User);
+  newComment.set('comment', comment);
+  return newComment.save();
+}

@@ -7,6 +7,7 @@ function PublishInput({ digibook }) {
   const [desc, setDesc] = useState('');
   const [location, setLocation] = useState('');
   const [title, setTitle] = useState(digibook.get("name") || '');
+  const [rating, setRating] = useState(0);
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
@@ -15,15 +16,19 @@ function PublishInput({ digibook }) {
   const handlePublish = (e) => {
     e.preventDefault();
 
-    if (!title || !desc || !location) {
+    if (!title || !desc || !location || !rating) {
       alert("Please fill in all fields!");
       return;
     }
 
-    publishDesign({ id: digibook.id, name: title, desc: desc, location: location }).then(() => {
+    publishDesign({ id: digibook.id, name: title, desc: desc, location: location, rating: rating }).then(() => {
       window.location.reload();
     })
+  }
 
+  const onRatingChange = (e) => {
+    const value = parseFloat(e.target.value);
+    setRating(value);
   }
 
   return (
@@ -52,15 +57,15 @@ function PublishInput({ digibook }) {
               <div className="mb-3">
                 <label className="form-label">Title:</label>
                 <input
-                    required
-                    type="text"
-                    className="form-control"
-                    id="inputName"
-                    name="name"
-                    value={title}
-                    onChange={handleTitleChange}
-                    placeholder="My Amazing Trip!"
-                  />
+                  required
+                  type="text"
+                  className="form-control"
+                  id="inputName"
+                  name="name"
+                  value={title}
+                  onChange={handleTitleChange}
+                  placeholder="My Amazing Trip!"
+                />
               </div>
               <div className="mb-3">
                 <label className="form-label">Location:</label>
@@ -85,6 +90,22 @@ function PublishInput({ digibook }) {
                     required
                   />
                 </div>
+              </div>
+
+              <div className="mb-3">
+                <label className="form-label flex justify-between">
+                  <span>Rating: {rating}</span>
+                </label>
+                <input
+                  type="range"
+                  class="form-range"
+                  min="0"
+                  max="5"
+                  step="0.5"
+                  id="ratingInput"
+                  value={rating}
+                  onChange={onRatingChange}
+                ></input>
               </div>
 
               <div className="mb-3">
