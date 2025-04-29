@@ -1,13 +1,16 @@
-import React from "react"
+import React, { useState } from "react"
 import { useCanvasHook } from "../Editor"
 import { saveDesign } from "../../../Common/Services/Editor/EditorService";
 
 export default function EditorHeader({ book, name, handleNameChange }) {
   const { canvasEditor } = useCanvasHook();
+  const [loading, setLoading] = useState(false);
 
   // What happened here
   const onSave = () => {
     if (!canvasEditor) return;
+
+    setLoading(true);
 
     const JsonDesign = canvasEditor.toJSON();
 
@@ -35,6 +38,7 @@ export default function EditorHeader({ book, name, handleNameChange }) {
     saveDesign({ blob: blob, objectId: book.id, design: JsonDesign })
       .then(() => {
         console.log("Design and preview image saved.");
+        setLoading(false);
       })
       .catch((error) => {
         console.error("Error saving design:", error);
@@ -81,7 +85,18 @@ export default function EditorHeader({ book, name, handleNameChange }) {
             onClick={onSave}
             className="btn btn-light !text-sm"
           >
-            Save <i className="pl-3 bi bi-save"></i>
+            {loading ? (
+              <>
+                <span>Saving</span>
+                <div className="ml-2 spinner-border spinner-border-sm" role="status">
+                  <span className="visually-hidden">Loading...</span>
+                </div>
+              </>
+            ) : (
+              <>
+                Save <i className="pl-1 bi bi-save"></i>
+              </>
+            )}
           </button>
           <button
             onClick={onExport}

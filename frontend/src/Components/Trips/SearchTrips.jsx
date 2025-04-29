@@ -27,8 +27,14 @@ function SearchTrips() {
   };
 
   const onSearchClick = () => {
-    if (place) {
-      console.log(place)
+    if (search) {
+      searchPlace(search)
+      .then((res) => {
+        navigate(`/trips/${res.get("placeId")}`);
+      })
+      .catch((error) => {
+        console.error("Error during search or create place:", error);
+      });
     }
   };
 
@@ -54,6 +60,7 @@ function SearchTrips() {
         <div className="m-3 w-1/2">
           <div className="input-group">
             <Autocomplete
+              id="searchInput"
               apiKey={Env.GOOGLE_MAPS_PLATFORM_KEY}
               onPlaceSelected={onPlaceSelected}
               options={{
@@ -93,7 +100,7 @@ function SearchTrips() {
                 <div className="cursor-pointer transition-all hover:scale-120 transition-transform duration-300 transform hover:rotate-180"
                   onClick={() => navigate("/scrapbooks")}
                 >
-                  <i class="bi bi-plus-square text-3xl"></i>
+                  <i className="bi bi-plus-square text-3xl"></i>
                 </div>
               </div>
             )}

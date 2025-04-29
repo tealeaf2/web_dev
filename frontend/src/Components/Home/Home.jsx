@@ -6,29 +6,34 @@ export default function Home() {
   const navigate = useNavigate();
   return (
     <>
-    <div>
-      <h1>welcome to digibooks!</h1>
-      <p>Discover and share amazing travel experiences through scrapbooks!</p>
-      <button onClick={() => navigate("/scrapbooks")}>Explore Scrapbooks</button>
+      {/* Placeholder for now */}
+      <div>
+        <section>
+          <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 gap-4 md:grid-cols-4 md:items-center md:gap-8">
+              <div class="md:col-span-1">
+                <div class="max-w-lg md:max-w-none">
+                  <h2 class="text-2xl font-semibold text-gray-900 sm:text-3xl">
+                    Get ready to explore the world!
+                  </h2>
 
-      {/* Featured Scrapbooks Section (Still deciding if want, maybe about better) */}
-      {/* No pictures for now */}
-      <h2>Featured Scrapbooks</h2>
-      <ul>
-        <li>
-          <h3>Beach Adventure</h3>
-          <p>A breathtaking vacation by the sea.</p>
-        </li>
-        <li>
-          <h3>Mountain Escape</h3>
-          <p>Hiking through majestic landscapes.</p>
-        </li>
-        <li>
-          <h3>City Exploration</h3>
-          <p>Discovering the beauty of urban life.</p>
-        </li>
-      </ul>
-    </div>
+                  <p class="mt-4 text-gray-700">
+                    Start by clicking on trips or on scrapbooks to start sharing your stories with others!
+                  </p>
+                </div>
+              </div>
+
+              <div class="md:col-span-3">
+                <img
+                  src="https://images.unsplash.com/photo-1731690415686-e68f78e2b5bd?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  class="rounded"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
     </>
   )
 }

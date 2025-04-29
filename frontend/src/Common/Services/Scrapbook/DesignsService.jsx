@@ -67,7 +67,7 @@ export const deleteDesignById = ({ id }) => {
   })
 }
 
-export const publishDesign = ({ id, location, desc, name }) => {
+export const publishDesign = ({ id, location, desc, name, rating }) => {
   const Scrapbook = Parse.Object.extend("Scrapbook");
   const Place = Parse.Object.extend("Place");
   const scrapbookQuery = new Parse.Query(Scrapbook);
@@ -107,6 +107,7 @@ export const publishDesign = ({ id, location, desc, name }) => {
           design.set("locationId", location.place_id);
           design.set("description", desc);
           design.set("isPublished", true);
+          design.set("rating", rating);
           design.set("placeId", place); // Pointer to Place
           return design.save();
         });
