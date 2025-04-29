@@ -98,7 +98,7 @@ function PublishInput({ digibook }) {
                 </label>
                 <input
                   type="range"
-                  class="form-range"
+                  className="form-range"
                   min="0"
                   max="5"
                   step="1"
