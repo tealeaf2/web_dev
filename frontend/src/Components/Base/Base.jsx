@@ -87,7 +87,7 @@ export default function Base() {
             <div className="card h-100 border-0 shadow-sm">
               <div className="card-body text-center p-4">
                 <div className="mb-3">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#3498db" class="bi bi-back" viewBox="0 0 16 16">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#3498db" className="bi bi-back" viewBox="0 0 16 16">
                     <path d="M0 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z"/>
                   </svg>
                 </div>
@@ -100,7 +100,7 @@ export default function Base() {
             <div className="card h-100 border-0 shadow-sm">
               <div className="card-body text-center p-4">
                 <div className="mb-3">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#ff69b4" class="bi bi-card-image" viewBox="0 0 16 16">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#ff69b4" className="bi bi-card-image" viewBox="0 0 16 16">
                     <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
                     <path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54L1 12.5v-9a.5.5 0 0 1 .5-.5z"/>
                   </svg>
@@ -114,7 +114,7 @@ export default function Base() {
             <div className="card h-100 border-0 shadow-sm">
               <div className="card-body text-center p-4">
                 <div className="mb-3">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#3498db" class="bi bi-chat-right-heart" viewBox="0 0 16 16">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#3498db" clasName="bi bi-chat-right-heart" viewBox="0 0 16 16">
                     <path d="M2 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h9.586a2 2 0 0 1 1.414.586l2 2V2a1 1 0 0 0-1-1zm12-1a2 2 0 0 1 2 2v12.793a.5.5 0 0 1-.854.353l-2.853-2.853a1 1 0 0 0-.707-.293H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z"/>
                     <path d="M8 3.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132"/>
                   </svg>
