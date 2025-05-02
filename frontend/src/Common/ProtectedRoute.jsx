@@ -5,6 +5,7 @@ import Header from "../Components/Header/Header"
 
 const ProtectedRoute = ({header}) => {
   const currentUser = checkUser(); // Check if user is logged in
+  console.log(currentUser)
   //console.log(currentUser);
   return currentUser ? (
     <>
