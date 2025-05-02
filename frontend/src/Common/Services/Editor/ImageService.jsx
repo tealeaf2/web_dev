@@ -18,7 +18,7 @@ export const uploadImageWithId = ({scrapbookId, image}) => {
   newScrapbookImage.set("scrapbookId", ScrapbookPointer);
 
   return newScrapbookImage.save().then((res) => {
-    console.log(res)
+    // console.log(res)
     return res;
   })
 }
