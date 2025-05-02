@@ -159,11 +159,6 @@ function SearchTrips() {
 
             <DisplayDigibook show={show} handleClose={handleClose} digibook={chosen} />
           </div>
-
-
-
-
-
         ) : <Loading />}
       </div>
     </>

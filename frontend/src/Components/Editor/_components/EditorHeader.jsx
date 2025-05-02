@@ -2,9 +2,8 @@ import React, { useState } from "react"
 import { useCanvasHook } from "../Editor"
 import { saveDesign } from "../../../Common/Services/Editor/EditorService";
 
-export default function EditorHeader({ book, name, handleNameChange }) {
+export default function EditorHeader({ book, name, handleNameChange, loading, setLoading }) {
   const { canvasEditor } = useCanvasHook();
-  const [loading, setLoading] = useState(false);
 
   // What happened here
   const onSave = () => {
@@ -37,7 +36,7 @@ export default function EditorHeader({ book, name, handleNameChange }) {
 
     saveDesign({ blob: blob, objectId: book.id, design: JsonDesign })
       .then(() => {
-        console.log("Design and preview image saved.");
+        // console.log("Design and preview image saved.");
         setLoading(false);
       })
       .catch((error) => {
@@ -84,6 +83,7 @@ export default function EditorHeader({ book, name, handleNameChange }) {
           <button
             onClick={onSave}
             className="btn btn-light !text-sm"
+            disabled={loading}
           >
             {loading ? (
               <>

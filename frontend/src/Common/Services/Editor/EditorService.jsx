@@ -1,5 +1,7 @@
 import Parse from "parse";
 
+// All the services used for the settings/functionalities of the actual canvas
+
 export const saveDesign = ({ blob, objectId, design }) => {
   const Scrapbook = Parse.Object.extend("Scrapbook");
   const query = new Parse.Query(Scrapbook);

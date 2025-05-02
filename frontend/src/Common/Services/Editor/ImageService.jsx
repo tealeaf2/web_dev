@@ -23,6 +23,7 @@ export const uploadImageWithId = ({scrapbookId, image}) => {
   })
 }
 
+// For searching images online
 export const unsplashApi = async ({searchInput}) => {
   try {
     const res = await axios.get('https://api.unsplash.com/search/photos', {

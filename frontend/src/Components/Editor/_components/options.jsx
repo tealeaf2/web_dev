@@ -14,6 +14,7 @@ import lineImg from "../../../assets/elements/line.png"
 import squareImg from "../../../assets/elements/square.png"
 import triangleImg from "../../../assets/elements/triangle.png"
 
+// Iterating through a select list of components for sideBar
 export const sideBarMenu = [
   // {
   //   name: 'Templates',
@@ -58,6 +59,8 @@ export const sideBarMenu = [
   }
 ]
 
+
+// For Elements Settings
 export const ShapeList = [
   {
       name: 'Circle',
@@ -77,6 +80,8 @@ export const ShapeList = [
   }
 ]
 
+
+// For tooltip text
 export const FontFamilyList = [
   "Arial",
   "Arial Black",
@@ -98,6 +103,7 @@ export const FontFamilyList = [
   "Lucida Console",
 ]
 
+// Full tooltip settings
 export const shapesSettingsList = [
   {
       name: 'Fill',
@@ -141,6 +147,7 @@ export const shapesSettingsList = [
   // },
 ]
 
+// Online stickers for ElementSettings
 export const StickerList = [
   'https://cdn-icons-png.flaticon.com/256/428/428094.png',
   'https://cdn-icons-png.flaticon.com/256/2111/2111463.png',
