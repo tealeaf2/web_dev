@@ -11,7 +11,7 @@ function BeginSearch({ handleSearch }) {
 
   const onSearchClick = () => {
     if (selectedPlace) {
-      console.log(selectedPlace)
+      // console.log(selectedPlace)
       handleSearch(selectedPlace);
     }
   };

@@ -10,7 +10,7 @@ export const createUser = (newUser) => {
   user.set("password", newUser.password);
   user.set("email", newUser.email);
 
-  console.log("User: ", user);
+  // console.log("User: ", user);
   return user
     .signUp()
     .then((newUserSaved) => {
@@ -28,8 +28,8 @@ export const loginUser = (currUser) => {
   user.set("password", currUser.password);
   user.set("username", currUser.email);
 
-  console.log("User: ", user);
-  console.log();
+  // console.log("User: ", user);
+
   return user
     .logIn(user.email, user.password)
     .then((currUserSaved) => {
