@@ -1,11 +1,8 @@
-import React, { useState } from 'react'
-import { useParams } from 'react-router-dom';
-import { uploadImageWithId } from './ImageService';
-import { useCanvasHook } from '../../../Components/Editor/Editor';
+import React from 'react'
+import { useCanvasHook } from '../../Editor';
 import { FabricImage } from 'fabric';
 
 export default function UploadImage() {
-  const { scrapbookId } = useParams();
   const { canvasEditor } = useCanvasHook();
 
   const onFileUpload = async (e) => {

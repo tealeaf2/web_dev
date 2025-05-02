@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { unsplashApi } from './ImageService'
-import { useCanvasHook } from '../../../Components/Editor/Editor';
+import { unsplashApi } from '../../../../Common/Services/Editor/ImageService'
+import { useCanvasHook } from '../../Editor';
 import { FabricImage } from 'fabric';
 
 export default function SearchImages() {

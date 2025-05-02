@@ -1,5 +1,6 @@
 import React from 'react'
 
+// Placeholder for search
 function Loading() {
   return (
     <div>

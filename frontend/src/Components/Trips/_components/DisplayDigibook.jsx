@@ -8,6 +8,7 @@ function DisplayDigibook({ show, handleClose, digibook }) {
   const [comments, setComments] = useState([])
   const [comment, setComment] = useState("")
 
+  // console.log("digibook")
   useEffect(() => {
     if (!digibook) return;
 
@@ -43,7 +44,7 @@ function DisplayDigibook({ show, handleClose, digibook }) {
         <Offcanvas.Header closeButton className="border-b border-[#525658]">
           <div className="flex items-center gap-3">
             <div className="text-md font-semibold">
-              {digibook.get("userId").get("firstName")} {digibook.get("userId").get("lastName")}
+              {digibook.get("userId")?.get("firstName")} {digibook.get("userId")?.get("lastName")}
             </div>
           </div>
         </Offcanvas.Header>
@@ -54,7 +55,7 @@ function DisplayDigibook({ show, handleClose, digibook }) {
             <img
               src={digibook.get("imagePreview")?.url()}
               alt={digibook.get("name")}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
             />
           </div>
 

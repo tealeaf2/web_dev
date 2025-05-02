@@ -14,6 +14,7 @@ export default function Editor() {
   const [book, setBook] = useState(null);
   const [bookName, setBookName] = useState("")
   const [canvasEditor, setCanvasEditor] = useState([]);
+  const [loading, setLoading] = useState(false);
   const timeoutRef = useRef(null);
 
   useEffect(() => {
@@ -42,19 +43,24 @@ export default function Editor() {
   };
 
   //TODO: Create a method to check if the scrapbookId exists, if it doesn't exit back to scrapbooks and give an alert
-
   return (
     <>
       <div>
         <CanvasContext.Provider value={{ canvasEditor, setCanvasEditor }}>
-          <EditorHeader book={book} name={bookName} handleNameChange={handleNameChange} />
+          <EditorHeader 
+            book={book} 
+            name={bookName} 
+            handleNameChange={handleNameChange} 
+            loading={loading} 
+            setLoading={setLoading} 
+          />
           <div className='flex'>
             <EditorSidebar />
             <div className="relative w-full h-screen">
               <div className="absolute top-0 left-0 w-full z-10">
                 <TopNavBar />
               </div>
-              <CanvasEditor book={book} />
+              <CanvasEditor book={book} setLoading={setLoading}/>
             </div>
 
           </div>
@@ -64,6 +70,8 @@ export default function Editor() {
   )
 }
 
+// Creates a custom hook for the canvas itself, should put in module but can't figure out how
+// Convenient right now as one import, should look at later
 export const useCanvasHook = () => {
   const context = useContext(CanvasContext);
   if (!context) {
