@@ -13,6 +13,25 @@ Live site: [digibooksnd.netlify.app](https://digibooksnd.netlify.app)
 - Khang Le - (kle2@nd.edu)
 - Sadie Co (sco@nd.edu)
 
+## How to Run
+
+To run the project locally:
+
+1. Clone the repository
+```
+git clone https://github.com/tealeaf2/web_dev.git
+cd web_dev
+```
+2. Install dependencies
+```
+cd frontend
+npm install
+```
+3. Start the development server
+```
+npm run dev
+```
+
 ## Tech Stack
 - React (with Vite)
 - Parse
